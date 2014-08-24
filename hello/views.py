@@ -12,7 +12,6 @@ CASCADE_FILE = 'hello/haarcascade_frontalface_default.xml'
 def index(request):
     return HttpResponse('Hello from Python!')
 
-
 def db(request):
 
     greeting = Greeting()
@@ -35,7 +34,7 @@ def num_faces(request):
     if request.method == 'GET':
         image_link = request.GET['im']
         num_faces = faceDetection.detectFaces(image_link, CASCADE_FILE)
-        return json.dumps({'num_faces' : num_faces})
+        return HttpResponse(json.dumps({'num_faces' : num_faces}))
     return HttpResponse('nope')
 
 def are_similar(request):
@@ -43,5 +42,5 @@ def are_similar(request):
         image_link1 = request.GET['im1']
         image_link2 = request.GET['im2']
         are_similar = faceDetection.facesAreSimilar(image_link1, image_link2)
-        return json.dumps({'are_similar' : are_similar})
+        return HttpResponse(json.dumps({'are_similar' : are_similar}))
     return HttpResponse('nope')
