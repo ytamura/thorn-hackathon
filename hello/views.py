@@ -18,4 +18,9 @@ def db(request):
     return render(request, 'db.html', {'greetings': greetings})
 
 def face(request):
+    if request.method == 'GET':
+        image_link = request.GET['im']
+        return HttpResponse(image_link)
+    elif request.method == 'POST':
+        return HttpResponse('yeah..')
     return HttpResponse('test!')
