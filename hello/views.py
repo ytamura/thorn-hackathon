@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import os
 
 from .models import Greeting
 import faceDetection
@@ -23,8 +24,8 @@ def db(request):
 def face(request):
     if request.method == 'GET':
         image_link = request.GET['im']
-        result = faceDetection.detectFaces(image_link , CASCADE_FILE)
-        return HttpResponse("Found %d faces" % result)
+        result = faceDetection.detectFaces(image_link, CASCADE_FILE)
+        return HttpResponse("Found %d faces in %s. Current dir: %s" % (result, image_link, os.getcwd()))
     elif request.method == 'POST':
         return HttpResponse('yeah..')
     return HttpResponse('test!')
