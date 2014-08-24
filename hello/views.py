@@ -5,7 +5,7 @@ import os
 from .models import Greeting
 import faceDetection
 
-CASCADE_FILE = 'app/hello/haarcascade_frontalface_default.xml'
+CASCADE_FILE = 'hello/haarcascade_frontalface_default.xml'
 
 # Create your views here.
 def index(request):
