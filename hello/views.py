@@ -24,8 +24,9 @@ def db(request):
 def face(request):
     if request.method == 'GET':
         image_link = request.GET['im']
-        result = faceDetection.detectFaces(image_link, CASCADE_FILE)
-        return HttpResponse("Found %d faces in %s. Current dir: %s" % (result, image_link, os.getcwd()))
+        this_path, this_file = os.path.split(__file__)
+        result = faceDetection.detectFaces(image_link, this_path + '/' + CASCADE_FILE)
+        return HttpResponse("Found %d faces in %s. Current dir: %s" % (result, image_link, this_path))
     elif request.method == 'POST':
         return HttpResponse('yeah..')
     return HttpResponse('test!')
