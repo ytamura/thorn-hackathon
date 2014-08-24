@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import os
+import json
 
 from .models import Greeting
 import faceDetection
@@ -29,3 +30,18 @@ def face(request):
     elif request.method == 'POST':
         return HttpResponse('yeah..')
     return HttpResponse('test!')
+
+def num_faces(request):
+    if request.method == 'GET':
+        image_link = request.GET['im']
+        num_faces = faceDetection.detectFaces(image_link, CASCADE_FILE)
+        return json.dumps({'num_faces' : num_faces})
+    return HttpResponse('nope')
+
+def num_faces(request):
+    if request.method == 'GET':
+        image_link1 = request.GET['im1']
+        image_link2 = request.GET['im2']
+        are_similar = faceDetection.facesAreSimilar(image_link1, image_link2)
+        return json.dumps({'are_similar' : are_similar})
+    return HttpResponse('nope')
