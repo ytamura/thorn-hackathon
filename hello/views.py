@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .models import Greeting
+import faceDetection
+
+CASCADE_FILE = 'haarcascade_frontalface_default.xml'
 
 # Create your views here.
 def index(request):
@@ -20,7 +23,8 @@ def db(request):
 def face(request):
     if request.method == 'GET':
         image_link = request.GET['im']
-        return HttpResponse(image_link)
+        result = faceDetection.detectFaces('http://media-cdn.tripadvisor.com/media/photo-s/03/9b/2e/18/tokyo.jpg' , CASCADE_FILE)
+        return HttpResponse("Found %d faces" % result)
     elif request.method == 'POST':
         return HttpResponse('yeah..')
     return HttpResponse('test!')
