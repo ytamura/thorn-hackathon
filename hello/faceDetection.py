@@ -38,6 +38,7 @@ def detectFaces(imgPath, cascPath):
         )
 
     print "Found %d faces in %s!" % (len(faces), imgPath)
+    return len(faces)
 
 def facesAreSimilar(imgPath1, imgPath2):
     image1 = cv2.cvtColor(readImage(imgPath1), cv2.COLOR_BGR2GRAY)

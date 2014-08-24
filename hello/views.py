@@ -23,7 +23,7 @@ def db(request):
 def face(request):
     if request.method == 'GET':
         image_link = request.GET['im']
-        result = faceDetection.detectFaces('http://media-cdn.tripadvisor.com/media/photo-s/03/9b/2e/18/tokyo.jpg' , CASCADE_FILE)
+        result = faceDetection.detectFaces(image_link , CASCADE_FILE)
         return HttpResponse("Found %d faces" % result)
     elif request.method == 'POST':
         return HttpResponse('yeah..')
