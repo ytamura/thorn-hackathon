@@ -25,7 +25,7 @@ def face(request):
     if request.method == 'GET':
         image_link = request.GET['im']
         num_faces = faceDetection.detectFaces(image_link, CASCADE_FILE)
-        return render(request, 'face.html', {'num_faces': num_faces, 'image_link': image_link}
+        return render(request, 'face.html', {'num_faces': num_faces, 'image_link': image_link})
     elif request.method == 'POST':
         return HttpResponse('yeah..')
     return HttpResponse('test!')
