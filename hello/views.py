@@ -17,3 +17,5 @@ def db(request):
 
     return render(request, 'db.html', {'greetings': greetings})
 
+def face(request):
+    return 0

@@ -13,5 +13,5 @@ urlpatterns = patterns('',
     url(r'^$', hello.views.index, name='index'),
     url(r'^db', hello.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
-
+    url(r'^face/', hello.views.face, name='face')
 )
