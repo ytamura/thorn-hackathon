@@ -38,7 +38,7 @@ def num_faces(request):
         return json.dumps({'num_faces' : num_faces})
     return HttpResponse('nope')
 
-def num_faces(request):
+def are_similar(request):
     if request.method == 'GET':
         image_link1 = request.GET['im1']
         image_link2 = request.GET['im2']
