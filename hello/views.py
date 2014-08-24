@@ -5,7 +5,7 @@ import os
 from .models import Greeting
 import faceDetection
 
-CASCADE_FILE = 'haarcascade_frontalface_default.xml'
+CASCADE_FILE = 'app/hello/haarcascade_frontalface_default.xml'
 
 # Create your views here.
 def index(request):
@@ -24,9 +24,8 @@ def db(request):
 def face(request):
     if request.method == 'GET':
         image_link = request.GET['im']
-        this_path, this_file = os.path.split(__file__)
-        result = faceDetection.detectFaces(image_link, this_path + '/' + CASCADE_FILE)
-        return HttpResponse("Found %d faces in %s. Current dir: %s" % (result, image_link, this_path))
+        num_faces = faceDetection.detectFaces(image_link, CASCADE_FILE)
+        return render(request, 'face.html', {'num_faces': num_faces, 'image_link': image_link}
     elif request.method == 'POST':
         return HttpResponse('yeah..')
     return HttpResponse('test!')
